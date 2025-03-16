@@ -1,0 +1,76 @@
+HELM & Prometheus-Grafana Setup
+-------------------------------
+
+
+1. Download & install HELM on Ubuntu from its binaries:
+
+$ wget https://get.helm.sh/helm-v3.17.1-linux-amd64.tar.gz
+
+
+2. Once the download is complete, extract the tarball file:
+
+$ tar -xvf https://get.helm.sh/helm-v3.17.1-linux-amd64.tar.gz
+
+
+The extraction results in a directory called Linux-amd64 that contains all the Helm binary files.
+
+
+3. Next, move this file (Linux-amd64) to the /usr/bin/helm directory to complete the installation of the helm as shown
+
+ sudo mv linux-amd64/helm  /usr/bin/helm
+
+
+Now confirm Helm version as shown.
+
+ helm version
+
+
+4. Adding Helm repositories to Helm client:
+
+ helm repo add stable https://charts.helm.sh/stable
+
+
+5. For Prometheus,
+
+ a) Download Prometheus Community edition to Helm Client (EKS Mgmt Host)
+
+ helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+
+
+ b) To update all repositories available in Helm Client:
+
+ helm repo update
+
+
+ c) To install stable prometheus-community"
+
+ helm install my-prometheus prometheus-community/kube-prometheus-stack
+
+
+
+6. For Grafana,
+
+a) helm repo add grafana https://grafana.github.io/helm-charts
+
+b) helm repo update
+
+c) helm install my-grafana grafana/grafana
+
+
+
+--------------
+
+kubectl edit svc stable-kube-prometheus-sta-prometheus
+
+kubectl edit svc stable-grafana
+
+
+Grafana Default Credentials:
+admin
+prom-operator
+
+Password Reset command: 
+
+grafana-cli admin reset-admin-password devops
+
+Video Link : https://www.youtube.com/watch?v=dzBGhlF4M1U
